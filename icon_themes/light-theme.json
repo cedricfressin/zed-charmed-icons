@@ -1,5 +1,5 @@
 {
-    "$schema": "https://zed.dev/schema/icon_themes/v0.2.0.json",
+    "$schema": "https://zed.dev/schema/icon_themes/v0.3.0.json",
     "name": "Charmed Icons",
     "author": "littensy",
     "themes": [
@@ -9,6 +9,160 @@
             "directory_icons": {
                 "collapsed": "./icons/light/_folder.svg",
                 "expanded": "./icons/light/_folder_open.svg"
+            },
+            "named_directory_icons": {
+                "src": {
+                    "collapsed": "./icons/_named/folder-src.svg",
+                    "expanded": "./icons/_named/folder-src-open.svg"
+                },
+                "source": {
+                    "collapsed": "./icons/_named/folder-source.svg",
+                    "expanded": "./icons/_named/folder-source-open.svg"
+                },
+                "app": {
+                    "collapsed": "./icons/_named/folder-app.svg",
+                    "expanded": "./icons/_named/folder-app-open.svg"
+                },
+                "types": {
+                    "collapsed": "./icons/_named/folder-types.svg",
+                    "expanded": "./icons/_named/folder-types-open.svg"
+                },
+                "api": {
+                    "collapsed": "./icons/_named/folder-api.svg",
+                    "expanded": "./icons/_named/folder-api-open.svg"
+                },
+                "server": {
+                    "collapsed": "./icons/_named/folder-server.svg",
+                    "expanded": "./icons/_named/folder-server-open.svg"
+                },
+                "routes": {
+                    "collapsed": "./icons/_named/folder-routes.svg",
+                    "expanded": "./icons/_named/folder-routes-open.svg"
+                },
+                "assets": {
+                    "collapsed": "./icons/_named/folder-assets.svg",
+                    "expanded": "./icons/_named/folder-assets-open.svg"
+                },
+                "public": {
+                    "collapsed": "./icons/_named/folder-public.svg",
+                    "expanded": "./icons/_named/folder-public-open.svg"
+                },
+                "images": {
+                    "collapsed": "./icons/_named/folder-images.svg",
+                    "expanded": "./icons/_named/folder-images-open.svg"
+                },
+                "img": {
+                    "collapsed": "./icons/_named/folder-img.svg",
+                    "expanded": "./icons/_named/folder-img-open.svg"
+                },
+                "media": {
+                    "collapsed": "./icons/_named/folder-media.svg",
+                    "expanded": "./icons/_named/folder-media-open.svg"
+                },
+                "test": {
+                    "collapsed": "./icons/_named/folder-test.svg",
+                    "expanded": "./icons/_named/folder-test-open.svg"
+                },
+                "tests": {
+                    "collapsed": "./icons/_named/folder-tests.svg",
+                    "expanded": "./icons/_named/folder-tests-open.svg"
+                },
+                "__tests__": {
+                    "collapsed": "./icons/_named/folder-__tests__.svg",
+                    "expanded": "./icons/_named/folder-__tests__-open.svg"
+                },
+                "spec": {
+                    "collapsed": "./icons/_named/folder-spec.svg",
+                    "expanded": "./icons/_named/folder-spec-open.svg"
+                },
+                "docs": {
+                    "collapsed": "./icons/_named/folder-docs.svg",
+                    "expanded": "./icons/_named/folder-docs-open.svg"
+                },
+                "doc": {
+                    "collapsed": "./icons/_named/folder-doc.svg",
+                    "expanded": "./icons/_named/folder-doc-open.svg"
+                },
+                ".github": {
+                    "collapsed": "./icons/_named/folder-github.svg",
+                    "expanded": "./icons/_named/folder-github-open.svg"
+                },
+                ".git": {
+                    "collapsed": "./icons/_named/folder-git.svg",
+                    "expanded": "./icons/_named/folder-git-open.svg"
+                },
+                "node_modules": {
+                    "collapsed": "./icons/_named/folder-node_modules.svg",
+                    "expanded": "./icons/_named/folder-node_modules-open.svg"
+                },
+                "dist": {
+                    "collapsed": "./icons/_named/folder-dist.svg",
+                    "expanded": "./icons/_named/folder-dist-open.svg"
+                },
+                "build": {
+                    "collapsed": "./icons/_named/folder-build.svg",
+                    "expanded": "./icons/_named/folder-build-open.svg"
+                },
+                "out": {
+                    "collapsed": "./icons/_named/folder-out.svg",
+                    "expanded": "./icons/_named/folder-out-open.svg"
+                },
+                ".next": {
+                    "collapsed": "./icons/_named/folder-next.svg",
+                    "expanded": "./icons/_named/folder-next-open.svg"
+                },
+                "styles": {
+                    "collapsed": "./icons/_named/folder-styles.svg",
+                    "expanded": "./icons/_named/folder-styles-open.svg"
+                },
+                "css": {
+                    "collapsed": "./icons/_named/folder-css.svg",
+                    "expanded": "./icons/_named/folder-css-open.svg"
+                },
+                "scss": {
+                    "collapsed": "./icons/_named/folder-scss.svg",
+                    "expanded": "./icons/_named/folder-scss-open.svg"
+                },
+                "config": {
+                    "collapsed": "./icons/_named/folder-config.svg",
+                    "expanded": "./icons/_named/folder-config-open.svg"
+                },
+                ".config": {
+                    "collapsed": "./icons/_named/folder-config.svg",
+                    "expanded": "./icons/_named/folder-config-open.svg"
+                },
+                ".vscode": {
+                    "collapsed": "./icons/_named/folder-vscode.svg",
+                    "expanded": "./icons/_named/folder-vscode-open.svg"
+                },
+                "components": {
+                    "collapsed": "./icons/_named/folder-components.svg",
+                    "expanded": "./icons/_named/folder-components-open.svg"
+                },
+                "ui": {
+                    "collapsed": "./icons/_named/folder-ui.svg",
+                    "expanded": "./icons/_named/folder-ui-open.svg"
+                },
+                "hooks": {
+                    "collapsed": "./icons/_named/folder-hooks.svg",
+                    "expanded": "./icons/_named/folder-hooks-open.svg"
+                },
+                "store": {
+                    "collapsed": "./icons/_named/folder-store.svg",
+                    "expanded": "./icons/_named/folder-store-open.svg"
+                },
+                "state": {
+                    "collapsed": "./icons/_named/folder-state.svg",
+                    "expanded": "./icons/_named/folder-state-open.svg"
+                },
+                "lib": {
+                    "collapsed": "./icons/_named/folder-lib.svg",
+                    "expanded": "./icons/_named/folder-lib-open.svg"
+                },
+                "utils": {
+                    "collapsed": "./icons/_named/folder-utils.svg",
+                    "expanded": "./icons/_named/folder-utils-open.svg"
+                }
             },
             "file_stems": {
                 "astro.config.js": "astro-config",
