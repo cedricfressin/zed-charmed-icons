@@ -62,7 +62,7 @@ ALIASES = {
     # deps / build output
     "node_modules": "node", ".pnpm": "package", "packages": "package",
     "build": "dist", "out": "dist", "output": "dist", ".output": "dist",
-    ".next": "dist", ".expo": "temp", ".turbo": "temp",
+    ".next": "dist", ".turbo": "temp",
     ".nuxt": "nuxt",
     # config
     "configs": "config", ".config": "config", "settings": "config",
@@ -97,8 +97,10 @@ ALIASES = {
     ".storybook": "storybook", "stories": "storybook",
     "www": "web", ".yarn": "yarn",
     "js": "javascript", "ts": "typescript",
-    # AI agent config dirs (custom folder_agent icon, see gen_custom_icons.py)
-    ".claude": "agent", ".codex": "agent", ".cursor": "agent", ".gemini": "agent",
+    # AI agent / Expo config dirs (custom icons, see gen_custom_icons.py)
+    ".claude": "claude", ".codex": "codex",
+    ".cursor": "agent", ".gemini": "agent",
+    ".expo": "expo", ".eas": "expo",
 }
 
 
