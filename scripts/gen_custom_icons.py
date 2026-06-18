@@ -81,15 +81,17 @@ def agent_doc():
     )
 
 
-def knockout_folder(body_color, logo_d, transform):
-    """Filled folder with the logo punched out bottom-right (transparent)."""
+def badge_folder(body_color, glyph_color, logo_d, transform):
+    """Filled folder with the logo as a solid glyph bottom-right (resvg-safe).
+
+    Mirrors upstream folder_assets / folder_vscode: a colored body plus a
+    lighter-tone glyph overlapping the bottom-right corner. No <mask> — resvg
+    (Zed's renderer) does not honor masks and would draw the child instead.
+    """
     return (
         f"{HEADER}\n"
-        f'<mask id="ko" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">\n'
-        f'<path d="{FOLDER_FILLED}" fill="white"/>\n'
-        f'<g transform="{transform}"><path d="{logo_d}" fill="black"/></g>\n'
-        f"</mask>\n"
-        f'<path opacity="0.9" d="{FOLDER_FILLED}" fill="{body_color}" mask="url(#ko)"/>\n'
+        f'<path opacity="0.85" d="{FOLDER_FILLED}" fill="{body_color}"/>\n'
+        f'<g transform="{transform}"><path d="{logo_d}" fill="{glyph_color}"/></g>\n'
         f"</svg>\n"
     )
 
@@ -109,14 +111,14 @@ def main():
     write(CUSTOM, "expo.svg",
           file_logo(EXPO_D, "translate(1.2 1.7) scale(0.575)", WHITE))
 
-    # Folder icons (knockout, bottom-right)
+    # Folder icons: solid glyph overlapping bottom-right corner.
     folders = {
-        "folder_claude": (CORAL, CLAUDE_D, "translate(6.2 6) scale(0.333)"),
-        "folder_codex": (CODEX, OPENAI_D, "translate(5.9 5.65) scale(0.0336)"),
-        "folder_expo": (EXPO_INDIGO, EXPO_D, "translate(6.2 6.3) scale(0.333)"),
+        "folder_claude": (CORAL, "#F4CABA", CLAUDE_D, "translate(6.8 6.5) scale(0.375)"),
+        "folder_codex": (CODEX, "#6FD9BE", OPENAI_D, "translate(6.7 6.33) scale(0.0359)"),
+        "folder_expo": (EXPO_INDIGO, WHITE, EXPO_D, "translate(6.8 6.8) scale(0.375)"),
     }
-    for base, (color, d, tf) in folders.items():
-        svg = knockout_folder(color, d, tf)
+    for base, (body, glyph, d, tf) in folders.items():
+        svg = badge_folder(body, glyph, d, tf)
         write(NAMED, f"{base}.svg", svg)
         write(NAMED, f"{base}_open.svg", svg)  # reuse silhouette for expanded
 
