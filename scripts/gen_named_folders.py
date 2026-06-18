@@ -97,6 +97,8 @@ ALIASES = {
     ".storybook": "storybook", "stories": "storybook",
     "www": "web", ".yarn": "yarn",
     "js": "javascript", "ts": "typescript",
+    # AI agent config dirs (custom folder_agent icon, see gen_custom_icons.py)
+    ".claude": "agent", ".codex": "agent", ".cursor": "agent", ".gemini": "agent",
 }
 
 

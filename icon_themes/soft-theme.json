@@ -19,13 +19,29 @@
                     "collapsed": "./icons/_named/folder_changesets.svg",
                     "expanded": "./icons/_named/folder_changesets_open.svg"
                 },
+                ".claude": {
+                    "collapsed": "./icons/_named/folder_agent.svg",
+                    "expanded": "./icons/_named/folder_agent_open.svg"
+                },
+                ".codex": {
+                    "collapsed": "./icons/_named/folder_agent.svg",
+                    "expanded": "./icons/_named/folder_agent_open.svg"
+                },
                 ".config": {
                     "collapsed": "./icons/_named/folder_config.svg",
                     "expanded": "./icons/_named/folder_config_open.svg"
                 },
+                ".cursor": {
+                    "collapsed": "./icons/_named/folder_agent.svg",
+                    "expanded": "./icons/_named/folder_agent_open.svg"
+                },
                 ".expo": {
                     "collapsed": "./icons/_named/folder_temp.svg",
                     "expanded": "./icons/_named/folder_temp_open.svg"
+                },
+                ".gemini": {
+                    "collapsed": "./icons/_named/folder_agent.svg",
+                    "expanded": "./icons/_named/folder_agent_open.svg"
                 },
                 ".github": {
                     "collapsed": "./icons/_named/folder_github.svg",
@@ -765,6 +781,14 @@
                 }
             },
             "file_stems": {
+                "CLAUDE.md": "agent-doc",
+                "AGENTS.md": "agent-doc",
+                "app.json": "expo",
+                "eas.json": "expo",
+                "app.config.ts": "expo",
+                "app.config.js": "expo",
+                "app.config.mjs": "expo",
+                "app.config.cjs": "expo",
                 "astro.config.js": "astro-config",
                 "astro.config.mjs": "astro-config",
                 "astro.config.cjs": "astro-config",
@@ -1773,6 +1797,12 @@
                 "zst": "zip"
             },
             "file_icons": {
+                "agent-doc": {
+                    "path": "./icons/_custom/agent-doc.svg"
+                },
+                "expo": {
+                    "path": "./icons/_custom/expo.svg"
+                },
                 "default": {
                     "path": "./icons/soft/_file.svg"
                 },
