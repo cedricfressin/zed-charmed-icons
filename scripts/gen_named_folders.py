@@ -97,10 +97,6 @@ ALIASES = {
     ".storybook": "storybook", "stories": "storybook",
     "www": "web", ".yarn": "yarn",
     "js": "javascript", "ts": "typescript",
-    # AI agent / Expo config dirs (custom icons, see gen_custom_icons.py)
-    ".claude": "claude", ".codex": "codex",
-    ".cursor": "agent", ".gemini": "agent",
-    ".expo": "expo", ".eas": "expo",
 }
 
 

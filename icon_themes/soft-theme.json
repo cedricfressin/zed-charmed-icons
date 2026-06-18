@@ -19,33 +19,9 @@
                     "collapsed": "./icons/_named/folder_changesets.svg",
                     "expanded": "./icons/_named/folder_changesets_open.svg"
                 },
-                ".claude": {
-                    "collapsed": "./icons/_named/folder_claude.svg",
-                    "expanded": "./icons/_named/folder_claude_open.svg"
-                },
-                ".codex": {
-                    "collapsed": "./icons/_named/folder_codex.svg",
-                    "expanded": "./icons/_named/folder_codex_open.svg"
-                },
                 ".config": {
                     "collapsed": "./icons/_named/folder_config.svg",
                     "expanded": "./icons/_named/folder_config_open.svg"
-                },
-                ".cursor": {
-                    "collapsed": "./icons/_named/folder_agent.svg",
-                    "expanded": "./icons/_named/folder_agent_open.svg"
-                },
-                ".eas": {
-                    "collapsed": "./icons/_named/folder_expo.svg",
-                    "expanded": "./icons/_named/folder_expo_open.svg"
-                },
-                ".expo": {
-                    "collapsed": "./icons/_named/folder_expo.svg",
-                    "expanded": "./icons/_named/folder_expo_open.svg"
-                },
-                ".gemini": {
-                    "collapsed": "./icons/_named/folder_agent.svg",
-                    "expanded": "./icons/_named/folder_agent_open.svg"
                 },
                 ".github": {
                     "collapsed": "./icons/_named/folder_github.svg",
@@ -785,8 +761,6 @@
                 }
             },
             "file_stems": {
-                "CLAUDE.md": "claude",
-                "AGENTS.md": "agent-doc",
                 "app.json": "expo",
                 "eas.json": "expo",
                 "app.config.ts": "expo",
@@ -1801,12 +1775,6 @@
                 "zst": "zip"
             },
             "file_icons": {
-                "agent-doc": {
-                    "path": "./icons/_custom/agent-doc.svg"
-                },
-                "claude": {
-                    "path": "./icons/_custom/claude.svg"
-                },
                 "expo": {
                     "path": "./icons/_custom/expo.svg"
                 },
