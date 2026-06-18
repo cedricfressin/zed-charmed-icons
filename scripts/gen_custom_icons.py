@@ -17,6 +17,9 @@ by all four themes; colors read on light and dark appearances. Logo path
 data lives in scripts/logos/*.path.
 """
 import os
+import sys
+sys.path.insert(0, os.path.dirname(__file__))
+from svg_path_transform import transform_path
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 CUSTOM = os.path.join(ROOT, "icons", "_custom")
@@ -50,6 +53,23 @@ FOLDER_FILLED = (
     "13.635 13.7275C13.1002 14 12.4001 14 11 14H5C3.59987 14 2.8998 14 2.36502 "
     "13.7275C1.89462 13.4878 1.51217 13.1054 1.27248 12.635C1 12.1002 1 11.4001 1 10Z"
 )
+# Open folder outline (stroke), from icons/base/_folder_open.svg.
+FOLDER_OPEN = (
+    "M4.2002 2.75H6.68945L8.68945 4.75H11C11.7124 4.75 12.2018 4.75026 12.5811 "
+    "4.78125C12.8593 4.80399 13.0407 4.84156 13.1748 4.88965L13.2949 4.94043C13.583 "
+    "5.08727 13.8241 5.31082 13.9922 5.58496L14.0596 5.70508C14.133 5.8491 14.1885 "
+    "6.04851 14.2188 6.41895C14.2497 6.7982 14.25 7.28756 14.25 8V10C14.25 10.7124 "
+    "14.2497 11.2018 14.2188 11.5811C14.196 11.8593 14.1584 12.0407 14.1104 "
+    "12.1748L14.0596 12.2949C13.9127 12.583 13.6892 12.8241 13.415 12.9922L13.2949 "
+    "13.0596C13.1509 13.133 12.9515 13.1885 12.5811 13.2188C12.2018 13.2497 11.7124 "
+    "13.25 11 13.25H5C4.28756 13.25 3.7982 13.2497 3.41895 13.2188C3.14073 13.196 "
+    "2.95934 13.1584 2.8252 13.1104L2.70508 13.0596C2.41699 12.9127 2.17592 12.6892 "
+    "2.00781 12.415L1.94043 12.2949C1.86705 12.1509 1.81152 11.9515 1.78125 "
+    "11.5811C1.75026 11.2018 1.75 10.7124 1.75 10V5.2002C1.75 4.62777 1.75024 "
+    "4.24314 1.77441 3.94727C1.79201 3.73202 1.8202 3.60099 1.85254 3.51074L1.88672 "
+    "3.43262C1.99161 3.22681 2.15084 3.05465 2.34668 2.93457L2.43262 2.88672C2.52316 "
+    "2.84059 2.66027 2.79788 2.94727 2.77441C3.24314 2.75024 3.62777 2.75 4.2002 2.75Z"
+)
 
 
 def sparkle(cx, cy, r, color):
@@ -81,17 +101,37 @@ def agent_doc():
     )
 
 
-def badge_folder(body_color, glyph_color, logo_d, transform):
-    """Filled folder with the logo as a solid glyph bottom-right (resvg-safe).
+def _placement(vw, vh, scale, cx, cy):
+    return cx - vw * scale / 2, cy - vh * scale / 2
 
-    Mirrors upstream folder_assets / folder_vscode: a colored body plus a
-    lighter-tone glyph overlapping the bottom-right corner. No <mask> — resvg
-    (Zed's renderer) does not honor masks and would draw the child instead.
+
+def carved_closed(body_color, glyph_color, logo_d, vw, vh, cx, cy, scale, gap=1.16):
+    """Filled folder hollowed by the logo (evenodd), logo redrawn lighter on top.
+
+    Mirrors upstream folder_assets / folder_vscode: the logo silhouette is cut
+    out of the body via fill-rule="evenodd" (resvg-safe, unlike <mask>), then a
+    slightly smaller copy is painted in a lighter tone, leaving a thin gap.
     """
+    tx, ty = _placement(vw, vh, scale * gap, cx, cy)
+    cut = transform_path(logo_d, scale * gap, tx, ty)
+    dx, dy = _placement(vw, vh, scale, cx, cy)
     return (
         f"{HEADER}\n"
-        f'<path opacity="0.85" d="{FOLDER_FILLED}" fill="{body_color}"/>\n'
-        f'<g transform="{transform}"><path d="{logo_d}" fill="{glyph_color}"/></g>\n'
+        f'<path fill-rule="evenodd" opacity="0.9" d="{FOLDER_FILLED} {cut}" fill="{body_color}"/>\n'
+        f'<g transform="translate({dx:.4f} {dy:.4f}) scale({scale})">'
+        f'<path d="{logo_d}" fill="{glyph_color}"/></g>\n'
+        f"</svg>\n"
+    )
+
+
+def outline_open(body_color, glyph_color, logo_d, vw, vh, cx, cy, scale):
+    """Open folder as a wireframe outline + the logo glyph bottom-right."""
+    dx, dy = _placement(vw, vh, scale, cx, cy)
+    return (
+        f"{HEADER}\n"
+        f'<path d="{FOLDER_OPEN}" stroke="{body_color}" stroke-width="1.5"/>\n'
+        f'<g transform="translate({dx:.4f} {dy:.4f}) scale({scale})">'
+        f'<path d="{logo_d}" fill="{glyph_color}"/></g>\n'
         f"</svg>\n"
     )
 
@@ -111,16 +151,18 @@ def main():
     write(CUSTOM, "expo.svg",
           file_logo(EXPO_D, "translate(1.2 1.7) scale(0.575)", WHITE))
 
-    # Folder icons: solid glyph overlapping bottom-right corner.
+    # Folder icons: closed = body hollowed by logo + lighter logo on top;
+    # open = wireframe outline + logo. (vw, vh, cx, cy, scale)
     folders = {
-        "folder_claude": (CORAL, "#F4CABA", CLAUDE_D, "translate(6.8 6.5) scale(0.375)"),
-        "folder_codex": (CODEX, "#6FD9BE", OPENAI_D, "translate(6.7 6.33) scale(0.0359)"),
-        "folder_expo": (EXPO_INDIGO, WHITE, EXPO_D, "translate(6.8 6.8) scale(0.375)"),
+        "folder_claude": (CORAL, "#F7D7CB", CLAUDE_D, 24, 24, 10.7, 10.4, 0.34),
+        "folder_codex": (CODEX, "#7FE0C8", OPENAI_D, 256, 260, 10.7, 10.4, 0.0326),
+        "folder_expo": (EXPO_INDIGO, WHITE, EXPO_D, 24, 24, 10.7, 10.6, 0.34),
     }
-    for base, (body, glyph, d, tf) in folders.items():
-        svg = badge_folder(body, glyph, d, tf)
-        write(NAMED, f"{base}.svg", svg)
-        write(NAMED, f"{base}_open.svg", svg)  # reuse silhouette for expanded
+    for base, (body, glyph, d, vw, vh, cx, cy, sc) in folders.items():
+        write(NAMED, f"{base}.svg",
+              carved_closed(body, glyph, d, vw, vh, cx, cy, sc))
+        write(NAMED, f"{base}_open.svg",
+              outline_open(body, glyph, d, vw, vh, cx, cy, sc))
 
     print("wrote claude/agent-doc/expo files + folder_claude/codex/expo")
 
